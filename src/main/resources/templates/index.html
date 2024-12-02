@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+
+<p>You are at home:) Hello</p>
+<div th:if="${name != null}">
+    <p th:text="${name}">
+</div>
+
+</body>
+</html>
