@@ -102,9 +102,11 @@ public class MinIoServiceImpl implements MinIoService {
     @Override
     public void deleteFile(User user, String fileName) throws ServerException, InsufficientDataException, ErrorResponseException, IOException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException {
 
+        String prefix = "user-" + user.getId() + "-files/";
+
         minioClient.removeObject(RemoveObjectArgs.builder()
                 .bucket(defaultBucket)
-                .object(fileName)
+                .object(prefix + fileName)
                 .build());
 
     }
@@ -121,14 +123,23 @@ public class MinIoServiceImpl implements MinIoService {
                 ListObjectsArgs.builder()
                         .bucket(defaultBucket)
                         .prefix(prefix) // Filter by folder path
-                        .recursive(true) // List files in subfolders as well
+                        .recursive(true) // Include all files in subfolders
                         .build()
         );
 
         // Collect file names from the result
         for (Result<Item> result : results) {
             Item item = result.get();
-            fileNames.add(item.objectName()); // Full path of the file
+
+            // Skip folders (optional, in case folder keys exist)
+            if (item.isDir()) {
+                continue;
+            }
+
+            // Extract just the file name (remove prefix if needed)
+            String objectName = item.objectName();
+            String fileName = objectName.substring(prefix.length());
+            fileNames.add(fileName); // Add only the file name
         }
 
         return fileNames;
@@ -137,10 +148,12 @@ public class MinIoServiceImpl implements MinIoService {
     @Override
     public InputStream downloadFile(User user, String fileName) throws ServerException, InsufficientDataException, ErrorResponseException, IOException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException {
 
+        String prefix = "user-" + user.getId() + "-files/";
+
         return minioClient.getObject(
                 GetObjectArgs.builder()
                         .bucket(defaultBucket)
-                        .object(fileName) // Full path of the file in MinIO
+                        .object(prefix + fileName) // Full path of the file in MinIO
                         .build()
         );
     }

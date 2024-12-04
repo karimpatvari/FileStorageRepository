@@ -1,12 +1,9 @@
 package com.applications.bobatea.controllers;
 
-import com.applications.bobatea.exceptions.UserExistsException;
 import com.applications.bobatea.models.User;
 import com.applications.bobatea.services.MinIoService;
 import com.applications.bobatea.services.UserService;
-import com.applications.bobatea.services.impl.MinIoServiceImpl;
 import io.minio.errors.*;
-import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
@@ -23,22 +20,19 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.Principal;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
-public class TestController {
+public class FilesController {
 
     private MinIoService minIoService;
     private UserService userService;
 
     @Autowired
-    public TestController(MinIoService minIoService, UserService userService) {
+    public FilesController(MinIoService minIoService, UserService userService) {
         this.minIoService = minIoService;
         this.userService = userService;
     }
