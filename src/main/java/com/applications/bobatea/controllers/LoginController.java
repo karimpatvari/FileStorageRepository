@@ -14,8 +14,4 @@ public class LoginController {
         return "login-page";
     }
 
-    @GetMapping("/")
-    public String showHomePage(Principal principal, Model model) {
-        return "index";
-    }
 }

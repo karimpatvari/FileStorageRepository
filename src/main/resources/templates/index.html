@@ -7,9 +7,41 @@
 <body>
 
 <p>You are at home:) Hello</p>
-<div th:if="${name != null}">
-    <p th:text="${name}">
-</div>
+
+<form method="post" action="/upload" enctype="multipart/form-data">
+    <p>Upload a file:</p>
+    <input
+            type="file"
+            id="upload"
+            name="file"
+    />
+    <button type="submit">Submit</button>
+</form>
+
+<table>
+    <thead>
+    <tr>
+        <th>File name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="fileName : ${files}">
+        <td th:text="${fileName}"></td>
+        <td>
+            <form action="/delete" method="post">
+                <input type="hidden" name="fileName" th:value="${fileName}">
+                <button type="submit">DELETE</button>
+            </form>
+        </td>
+        <td>
+            <form action="/download" method="get">
+                <input type="hidden" name="fileName" th:value="${fileName}">
+                <button type="submit">DOWNLOAD</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
 
 </body>
 </html>

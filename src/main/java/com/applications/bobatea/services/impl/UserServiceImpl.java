@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void register(User user) throws UserExistsException {
+    public User register(User user) throws UserExistsException {
 
         if (userRepository.findByUsername(user.getUsername()).isPresent()) {
             throw new UserExistsException(user.getUsername() + " already exists!");
@@ -33,6 +33,11 @@ public class UserServiceImpl implements UserService {
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        userRepository.save(user);
+        return userRepository.save(user);
+    }
+
+    @Override
+    public Optional<User> findByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 }
