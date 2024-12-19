@@ -1,4 +1,4 @@
-package com.applications.bobatea.exceptions;
+package com.applications.bobatea.customExceptions;
 
 public class UserExistsException extends Exception {
     public UserExistsException() {

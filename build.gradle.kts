@@ -39,6 +39,9 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
 	runtimeOnly("com.mysql:mysql-connector-j")
+	implementation("org.slf4j:slf4j-api:2.0.9")
+	implementation("ch.qos.logback:logback-classic:1.4.12")
+
 
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }

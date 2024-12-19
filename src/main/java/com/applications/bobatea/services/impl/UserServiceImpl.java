@@ -1,6 +1,6 @@
 package com.applications.bobatea.services.impl;
 
-import com.applications.bobatea.exceptions.UserExistsException;
+import com.applications.bobatea.customExceptions.UserExistsException;
 import com.applications.bobatea.models.User;
 import com.applications.bobatea.repository.UserRepository;
 import com.applications.bobatea.services.UserService;
@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.Optional;
 
 @Service
@@ -40,4 +41,11 @@ public class UserServiceImpl implements UserService {
     public Optional<User> findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
+
+    @Override
+    public User getAuthenticatedUser(Principal principal) throws UsernameNotFoundException {
+        return findByUsername(principal.getName()).orElseThrow(() -> new UsernameNotFoundException("User not found: " + principal.getName()));
+    }
+
+
 }

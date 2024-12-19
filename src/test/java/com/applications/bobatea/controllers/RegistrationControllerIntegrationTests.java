@@ -1,6 +1,6 @@
 package com.applications.bobatea.controllers;
 
-import com.applications.bobatea.exceptions.UserExistsException;
+import com.applications.bobatea.customExceptions.UserExistsException;
 import com.applications.bobatea.models.User;
 import com.applications.bobatea.repository.UserRepository;
 import com.applications.bobatea.services.UserService;

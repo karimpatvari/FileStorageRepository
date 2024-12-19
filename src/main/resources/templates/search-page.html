@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+</head>
+<body>
+
+<p>You are at search page:) Hello</p>
+
+<form action="/search" method="get">
+    <input type="text" name="keyword" placeholder="File name">
+    <button type="submit">SEARCH</button>
+</form>
+
+<div th:if="${!files.isEmpty()}">
+    <table>
+        <thead>
+        <tr>
+            <th>File name</th>
+            <th>File Path</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="file : ${files}">
+            <!-- File name -->
+            <td th:text="${file.getFileName()}"></td>
+            <!-- If it's a file -->
+            <div th:if="${!file.isFolder()}">
+
+                <td>
+                    <form action="/" method="get">
+                        <input type="hidden" name="path" th:value="${file.getFilePath()}">
+                        <button type="submit">OPEN FOLDER</button>
+                    </form>
+                </td>
+            </div>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div th:if="${files.isEmpty()}">
+    <p>Nothing there, empty</p>
+</div>
+
+</body>
+</html>

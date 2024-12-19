@@ -32,6 +32,13 @@ public class User implements UserDetails {
     @Column(name = "enabled")
     private boolean enabled = true;
 
+    @Transient
+    private String folder;
+
+    public String getFolder() {
+        return "user-" + this.id + "-files/";
+    }
+
     public User(String username, String password) {
         this.username = username;
         this.password = password;
