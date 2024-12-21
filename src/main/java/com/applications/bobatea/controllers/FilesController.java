@@ -202,6 +202,10 @@ public class FilesController {
             validatePrincipal(principal);
             User user = userService.getAuthenticatedUser(principal);
 
+            if (renameFileDto.getNewFileName() == null || renameFileDto.getNewFileName().isEmpty()) {
+                throw new IllegalArgumentException("File name is empty");
+            }
+
             String newFilePath = renameFileDto.getPath() + renameFileDto.getNewFileName();
             minIoService.renameFile(user, renameFileDto.getFilePath(), newFilePath);
 
