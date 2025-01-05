@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home | FileStorage</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles.css"> <!-- External CSS for styling -->
+</head>
+<body style="background-color: #fcfcfc;">
+
+<!-- navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <span class="navbar-brand mb-0 h1">FileStorage</span>
+        <div class="collapse navbar-collapse" id="navbarNav" style="justify-content: flex-end">
+
+            <a class="btn btn-outline-primary me-2" href="/login">Login</a>
+            <a class="btn btn-outline-secondary" href="/register">Register</a>
+
+        </div>
+    </div>
+</nav>
+
+<div class="container d-flex flex-column justify-content-center align-items-center">
+    <div class="text-center">
+        <p class="fs-4 fw-semibold mt-5">
+            Welcome to FileStorage app
+        </p>
+        <p>
+            Sign-in or Register, to get access to signed-in users only features like saving, reading through folders, or deleting files.
+        </p>
+        <a class="btn btn-primary me-2" href="/login">Login</a>
+        <a class="btn btn-secondary" href="/register">Register</a>
+    </div>
+</div>
+
+
+<!-- Bootstrap JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/static/js/main.js"></script>
+</body>
+</html>

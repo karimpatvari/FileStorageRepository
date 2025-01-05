@@ -1,15 +1,17 @@
 package com.applications.bobatea.controllers;
 
 import com.applications.bobatea.dto.FileDto;
+import com.applications.bobatea.dto.SearchPageDto;
+import com.applications.bobatea.dto.UserDto;
 import com.applications.bobatea.models.User;
-import com.applications.bobatea.services.HomePageService;
 import com.applications.bobatea.services.MinIoService;
 import com.applications.bobatea.services.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
@@ -19,6 +21,7 @@ import java.util.List;
 @Controller
 public class SearchPageController {
 
+    private static final Logger logger = LoggerFactory.getLogger(SearchPageController.class);
     private MinIoService minIoService;
     private UserService userService;
 
@@ -34,19 +37,26 @@ public class SearchPageController {
         try {
             validatePrincipal(principal);
             User user = userService.getAuthenticatedUser(principal);
+            UserDto userDto = new UserDto(user.getId(), user.getUsername());
 
             if (keyword == null || keyword.isEmpty()) {
-                model.addAttribute("files", new ArrayList<FileDto>());
+
+                SearchPageDto searchPageDto = new SearchPageDto(userDto, null ,"");
+
+                model.addAttribute(searchPageDto);
                 return "search-page";
             }
 
             List<FileDto> files = minIoService.findFiles(user, keyword);
 
-            model.addAttribute("files", files);
+            SearchPageDto searchPageDto = new SearchPageDto(userDto, (ArrayList<FileDto>) files,keyword);
+
+            model.addAttribute(searchPageDto);
             return "search-page";
 
         }  catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Error while searching files: {}", e.getMessage(), e);
+
             model.addAttribute("message", e.getMessage());
             return "error-page";
         }

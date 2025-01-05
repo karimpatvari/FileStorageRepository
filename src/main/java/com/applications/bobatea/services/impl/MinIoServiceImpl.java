@@ -7,12 +7,13 @@ import com.applications.bobatea.dto.RenameFolderDto;
 import com.applications.bobatea.dto.ZipDto;
 import com.applications.bobatea.models.User;
 import com.applications.bobatea.services.MinIoService;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import io.minio.*;
 import io.minio.errors.*;
 import io.minio.messages.Item;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,14 +24,15 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 @Service
 public class MinIoServiceImpl implements MinIoService {
 
-    private final String defaultBucket = "user-files";
+    private static final Logger logger = LoggerFactory.getLogger(MinIoServiceImpl.class);
+    @Value("${default.bucket.name}")
+    private String defaultBucket;
     private MinioClient minioClient;
 
     @Autowired
@@ -42,20 +44,17 @@ public class MinIoServiceImpl implements MinIoService {
     public void CreateBucket() throws MinioClientException {
 
         try {
-            // Check if the bucket exists;
-            boolean bucketExists = bucketExists(defaultBucket);
-
             // Create bucket if it does not exist
-            if (!bucketExists) {
+            if (!bucketExists()) {
                 minioClient.makeBucket(MakeBucketArgs.builder()
                         .bucket(defaultBucket)
                         .build());
-                System.out.println("Bucket created: " + defaultBucket);
             }
         } catch (MinioException | IOException | InvalidKeyException | NoSuchAlgorithmException e) {
-            e.printStackTrace();
 
-            throw new MinioClientException("An error occurred while accessing files. Please try again later.");
+            logger.error("Error creating bucket: {}", e.getMessage(), e);
+
+            throw new MinioClientException("An error occurred while creating bucket. Please try again later.");
         }
     }
 
@@ -73,9 +72,9 @@ public class MinIoServiceImpl implements MinIoService {
                             .build()
             );
         } catch (MinioException | IOException | InvalidKeyException | NoSuchAlgorithmException e) {
-            e.printStackTrace();
 
-            throw new MinioClientException("An error occurred while accessing files. Please try again later.");
+            logger.error("Error creating root user folder: {}", e.getMessage(), e);
+            throw new MinioClientException("An error occurred while creating user folder. Please try again later.");
         }
 
     }
@@ -86,7 +85,7 @@ public class MinIoServiceImpl implements MinIoService {
         String prefix = user.getFolder();
 
         if (folderName == null || folderName.isEmpty()) {
-            throw new MinioClientException("Internal server error. Please try again later.");
+            throw new MinioClientException("Invalid folder data: folder name is missing.");
         }
 
         if (path != null && !path.isEmpty()) {
@@ -106,9 +105,9 @@ public class MinIoServiceImpl implements MinIoService {
                             .build()
             );
         } catch (MinioException | IOException | InvalidKeyException | NoSuchAlgorithmException e) {
-            e.printStackTrace();
 
-            throw new MinioClientException("An error occurred while accessing files. Please try again later.");
+            logger.error("Error creating folder: {}", e.getMessage(), e);
+            throw new MinioClientException("An error occurred while creating new folder with name :" + folderName + ". Please try again later.");
         }
     }
 
@@ -118,7 +117,7 @@ public class MinIoServiceImpl implements MinIoService {
         String prefix = user.getFolder();
 
         if (folderPath == null || folderPath.isEmpty()) {
-            throw new MinioClientException("Internal server error. Please try again later.");
+            throw new MinioClientException("Invalid folder data: folder path is missing.");
         }
 
         if (!folderPath.endsWith("/")) {
@@ -151,7 +150,7 @@ public class MinIoServiceImpl implements MinIoService {
                 );
             }
         } catch (MinioException | IOException | InvalidKeyException | NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            logger.error("Error deleting folder: {}", e.getMessage(), e);
 
             throw new MinioClientException("An error occurred while accessing files. Please try again later.");
         }
@@ -197,7 +196,7 @@ public class MinIoServiceImpl implements MinIoService {
             // Ensure the path ends with a slash
             filePath += path.endsWith("/") ? path : path + "/";
         }else {
-            throw new MinioClientException("Internal server error. Please try again later.");
+            throw new IllegalArgumentException("Path is empty. Please try again later.");
         }
 
         // List objects with the given prefix
@@ -225,7 +224,7 @@ public class MinIoServiceImpl implements MinIoService {
             }
 
         } catch (MinioException | IOException | InvalidKeyException | NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            logger.error("Error listing files recursively: {}", e.getMessage(), e);
 
             throw new MinioClientException("An error occurred while accessing files. Please try again later.");
         }
@@ -240,7 +239,7 @@ public class MinIoServiceImpl implements MinIoService {
         List<InputStreamResource> resources = new ArrayList<>();
 
         if (path == null || path.isEmpty()) {
-            throw new MinioClientException("Internal server error. Please try again later.");
+            throw new IllegalArgumentException("Path is empty. Please try again later.");
         }
 
         try {
@@ -272,7 +271,7 @@ public class MinIoServiceImpl implements MinIoService {
 
             return new ZipDto(byteArrayOutputStream, s);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Error downloading folder: {}", e.getMessage(), e);
 
             throw new MinioClientException("An error occurred while accessing files. Please try again later.");
         }
@@ -284,11 +283,11 @@ public class MinIoServiceImpl implements MinIoService {
         String folder = user.getFolder();
 
         if (oldFilePath == null || oldFilePath.isEmpty()) {
-            throw new MinioClientException("Internal server error. Please try again later");
+            throw new IllegalArgumentException("Old file path is empty. Please try again later.");
         }
 
         if (newFilePath == null || newFilePath.isEmpty()) {
-            throw new MinioClientException("Internal server error. Please try again later");
+            throw new IllegalArgumentException("new file path is empty. Please try again later.");
         }
 
         try {
@@ -307,7 +306,7 @@ public class MinIoServiceImpl implements MinIoService {
 
             deleteFile(user, oldFilePath);
         } catch (MinioException | IOException | InvalidKeyException | NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            logger.error("Error renaming files: {}", e.getMessage(), e);
 
             throw new MinioClientException("An error occurred while accessing files. Please try again later.");
         }
@@ -315,14 +314,11 @@ public class MinIoServiceImpl implements MinIoService {
 
     @Override
     public void renameFolder(User user, RenameFolderDto renameFolderDto) throws MinioClientException {
-
         String folderPath = renameFolderDto.getFolderPath();
         String newFolderName = renameFolderDto.getNewFolderName();
         String path = renameFolderDto.getPath();
 
-        if (folderPath == null || newFolderName == null || path == null) {
-            throw new MinioClientException("Internal server error: please try again later.");
-        }
+        validateRenameInputs(folderPath, newFolderName, path);
 
         if (!newFolderName.endsWith("/")) {
             newFolderName += "/";
@@ -334,30 +330,28 @@ public class MinIoServiceImpl implements MinIoService {
             createNewFolder(user, newFolderName, path);
 
             String folder = user.getFolder();
-
             for (FileDto fileDto : fileDtos) {
 
-                String filePath = fileDto.getFilePath();
-                filePath = filePath.replace(folderPath, newFolderName);
+                String oldFilePath = fileDto.getFilePath();
+                String newFilePath = oldFilePath.replace(folderPath, newFolderName);
 
                 minioClient.copyObject(
                         CopyObjectArgs.builder()
                                 .bucket(defaultBucket)
-                                .object(folder + path + filePath)
+                                .object(folder + path + newFilePath)
                                 .source(CopySource.builder()
                                         .bucket(defaultBucket)
-                                        .object(folder + fileDto.getFilePath())
+                                        .object(folder + oldFilePath)
                                         .build())
                                 .build()
                 );
-
             }
 
             deleteFolder(user, folderPath);
         } catch (MinioException | IOException | InvalidKeyException | NoSuchAlgorithmException e) {
-            e.printStackTrace();
 
-            throw new MinioClientException("An error occurred while accessing files. Please try again later.");
+            logger.error("Error renaming folder: {}", e.getMessage(), e);
+            throw new MinioClientException("An error occurred while renaming folder. Please try again later.");
         }
     }
 
@@ -386,7 +380,7 @@ public class MinIoServiceImpl implements MinIoService {
                 }
             }
         }  catch (MinioException | IOException | InvalidKeyException | NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            logger.error("Error finding files: {}", e.getMessage(), e);
 
             throw new MinioClientException("An error occurred while accessing files. Please try again later.");
         }
@@ -423,7 +417,7 @@ public class MinIoServiceImpl implements MinIoService {
                             .build()
             );
         } catch (MinioException | IOException | InvalidKeyException | NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            logger.error("Error uploading file: {}", e.getMessage(), e);
 
             throw new MinioClientException("An error occurred while accessing files. Please try again later.");
         }
@@ -435,7 +429,7 @@ public class MinIoServiceImpl implements MinIoService {
         String prefix = user.getFolder();
 
         if (filePath == null || filePath.isEmpty()) {
-            throw new MinioClientException("Internal server error. Please try again later");
+            throw new IllegalArgumentException("File path is empty. Please try again later.");
         }
 
         try {
@@ -444,7 +438,7 @@ public class MinIoServiceImpl implements MinIoService {
                     .object(prefix + filePath)
                     .build());
         }  catch (MinioException | IOException | InvalidKeyException | NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            logger.error("Error deleting file: {}", e.getMessage(), e);
 
             throw new MinioClientException("An error occurred while accessing files. Please try again later.");
         }
@@ -456,7 +450,7 @@ public class MinIoServiceImpl implements MinIoService {
         String prefix = user.getFolder();
 
         if (filePath == null || filePath.isEmpty()) {
-            throw new MinioClientException("Internal server error. Please try again later");
+            throw new IllegalArgumentException("File path is empty. Please try again later.");
         }
 
         try {
@@ -467,7 +461,7 @@ public class MinIoServiceImpl implements MinIoService {
                             .build()
             ));
         } catch (MinioException | IOException | InvalidKeyException | NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            logger.error("Error downloading file: {}", e.getMessage(), e);
 
             throw new MinioClientException("An error occurred while accessing files. Please try again later.");
         }
@@ -525,7 +519,7 @@ public class MinIoServiceImpl implements MinIoService {
                 }
             }
         } catch (MinioException | IOException | InvalidKeyException | NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            logger.error("Error listing files in folder: {}", e.getMessage(), e);
 
             throw new MinioClientException("An error occurred while accessing files. Please try again later.");
         }
@@ -533,9 +527,9 @@ public class MinIoServiceImpl implements MinIoService {
         return fileDtos;
     }
 
-    private boolean bucketExists(String bucketName) throws MinioClientException {
+    private boolean bucketExists() throws MinioClientException {
         try {
-            return minioClient.bucketExists(BucketExistsArgs.builder().bucket(bucketName).build());
+            return minioClient.bucketExists(BucketExistsArgs.builder().bucket(defaultBucket).build());
         } catch (MinioException | IOException | InvalidKeyException | NoSuchAlgorithmException e) {
             e.printStackTrace();
 
@@ -547,8 +541,7 @@ public class MinIoServiceImpl implements MinIoService {
         String fileName = getFileName(item, prefix);
 
         String filePath = getFilePath(item, prefix);
-        String replace = filePath.replace(fileName, "");
-        return replace;
+        return filePath.replace(fileName, "");
     }
 
     private String getFileName(Item item, String prefix) {
@@ -595,6 +588,12 @@ public class MinIoServiceImpl implements MinIoService {
             return filePath.substring(lastDotIndex); // Includes the dot, e.g., ".jpg"
         }
         return ""; // No extension found
+    }
+
+    private void validateRenameInputs(String folderPath, String newFolderName, String path) throws MinioClientException {
+        if (folderPath == null || newFolderName == null || path == null) {
+            throw new MinioClientException("Invalid folder data: Folder path, new folder name, or path is missing.");
+        }
     }
 
 }

@@ -21,8 +21,6 @@ public class HomePageServiceImpl implements HomePageService {
 
     private MinIoService minIoService;
     private UserService userService;
-    @Value("${file.upload.max-size}")
-        private long MAX_FILE_SIZE;
 
     @Autowired
     public HomePageServiceImpl(MinIoService minIoService, UserService userService) {
@@ -32,10 +30,6 @@ public class HomePageServiceImpl implements HomePageService {
 
     @Override
     public HomePageDto getHomePageData(Principal principal, String path) throws MinioClientException, IllegalArgumentException {
-
-        if (principal == null) {
-            throw new UsernameNotFoundException("You must be logged in to access this page.");
-        }
 
         User user = userService.getAuthenticatedUser(principal);
         List<FileDto> fileDtos = minIoService.listFilesInFolder(user, path);

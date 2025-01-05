@@ -1,0 +1,371 @@
+2025-01-04T18:43:31.299-06:00  INFO 785 --- [fileStorage] [main] c.a.bobatea.FileStorageApplication       : Starting FileStorageApplication using Java 21.0.3 with PID 785 (/Users/karimpatvari/Desktop/bobatea/build/classes/java/main started by karimpatvari in /Users/karimpatvari/Desktop/bobatea)
+2025-01-04T18:43:31.300-06:00  INFO 785 --- [fileStorage] [main] c.a.bobatea.FileStorageApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-01-04T18:43:31.363-06:00  INFO 785 --- [fileStorage] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file /Users/karimpatvari/Desktop/bobatea/docker-compose.yml
+2025-01-04T18:43:36.612-06:00  INFO 785 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   : time="2025-01-04T18:43:36-06:00" level=warning msg="/Users/karimpatvari/Desktop/bobatea/docker-compose.yml: `version` is obsolete"
+2025-01-04T18:43:36.627-06:00  INFO 785 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Network bobatea_app-network  Creating
+2025-01-04T18:43:36.637-06:00  INFO 785 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Network bobatea_app-network  Created
+2025-01-04T18:43:36.640-06:00  INFO 785 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Network bobatea_default  Creating
+2025-01-04T18:43:36.650-06:00  INFO 785 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Network bobatea_default  Created
+2025-01-04T18:43:36.653-06:00  INFO 785 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container mysql-container  Creating
+2025-01-04T18:43:36.653-06:00  INFO 785 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container redis-container  Creating
+2025-01-04T18:43:36.653-06:00  INFO 785 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container bobatea-minio-1  Creating
+2025-01-04T18:43:36.708-06:00  INFO 785 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container bobatea-minio-1  Created
+2025-01-04T18:43:36.720-06:00  INFO 785 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container redis-container  Created
+2025-01-04T18:43:36.721-06:00  INFO 785 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container mysql-container  Created
+2025-01-04T18:43:36.722-06:00  INFO 785 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container bobatea-minio-1  Starting
+2025-01-04T18:43:36.722-06:00  INFO 785 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container redis-container  Starting
+2025-01-04T18:43:36.722-06:00  INFO 785 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container mysql-container  Starting
+2025-01-04T18:43:36.912-06:00  INFO 785 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container bobatea-minio-1  Started
+2025-01-04T18:43:36.926-06:00  INFO 785 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container mysql-container  Started
+2025-01-04T18:43:36.938-06:00  INFO 785 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container redis-container  Started
+2025-01-04T18:43:36.938-06:00  INFO 785 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container redis-container  Waiting
+2025-01-04T18:43:36.938-06:00  INFO 785 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container mysql-container  Waiting
+2025-01-04T18:43:36.938-06:00  INFO 785 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container bobatea-minio-1  Waiting
+2025-01-04T18:43:37.441-06:00  INFO 785 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container mysql-container  Healthy
+2025-01-04T18:43:37.442-06:00  INFO 785 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container bobatea-minio-1  Healthy
+2025-01-04T18:43:37.442-06:00  INFO 785 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container redis-container  Healthy
+2025-01-04T18:43:39.942-06:00  INFO 785 --- [fileStorage] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-01-04T18:43:39.943-06:00  INFO 785 --- [fileStorage] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-04T18:43:40.004-06:00  INFO 785 --- [fileStorage] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 55 ms. Found 1 JPA repository interface.
+2025-01-04T18:43:40.011-06:00  INFO 785 --- [fileStorage] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-01-04T18:43:40.012-06:00  INFO 785 --- [fileStorage] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-04T18:43:40.018-06:00  INFO 785 --- [fileStorage] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.applications.bobatea.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-01-04T18:43:40.018-06:00  INFO 785 --- [fileStorage] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 2 ms. Found 0 Redis repository interfaces.
+2025-01-04T18:43:40.263-06:00  INFO 785 --- [fileStorage] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-01-04T18:43:40.274-06:00  INFO 785 --- [fileStorage] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-04T18:43:40.274-06:00  INFO 785 --- [fileStorage] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-01-04T18:43:40.319-06:00  INFO 785 --- [fileStorage] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-04T18:43:40.320-06:00  INFO 785 --- [fileStorage] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 825 ms
+2025-01-04T18:43:40.786-06:00  INFO 785 --- [fileStorage] [main] liquibase.lockservice                    : Successfully acquired change log lock
+2025-01-04T18:43:40.907-06:00  INFO 785 --- [fileStorage] [main] liquibase.changelog                      : Reading from mydatabase.DATABASECHANGELOG
+2025-01-04T18:43:40.923-06:00  INFO 785 --- [fileStorage] [main] liquibase.changelog                      : Reading from mydatabase.DATABASECHANGELOG
+2025-01-04T18:43:40.925-06:00  INFO 785 --- [fileStorage] [main] liquibase.util                           : UPDATE SUMMARY
+2025-01-04T18:43:40.925-06:00  INFO 785 --- [fileStorage] [main] liquibase.util                           : Run:                          0
+2025-01-04T18:43:40.925-06:00  INFO 785 --- [fileStorage] [main] liquibase.util                           : Previously run:               2
+2025-01-04T18:43:40.925-06:00  INFO 785 --- [fileStorage] [main] liquibase.util                           : Filtered out:                 0
+2025-01-04T18:43:40.925-06:00  INFO 785 --- [fileStorage] [main] liquibase.util                           : -------------------------------
+2025-01-04T18:43:40.925-06:00  INFO 785 --- [fileStorage] [main] liquibase.util                           : Total change sets:            2
+
+2025-01-04T18:43:40.925-06:00  INFO 785 --- [fileStorage] [main] liquibase.util                           : Update summary generated
+2025-01-04T18:43:40.932-06:00  INFO 785 --- [fileStorage] [main] liquibase.lockservice                    : Successfully released change log lock
+2025-01-04T18:43:40.938-06:00  INFO 785 --- [fileStorage] [main] liquibase.lockservice                    : Successfully released change log lock
+2025-01-04T18:43:40.938-06:00  INFO 785 --- [fileStorage] [main] liquibase.command                        : Command execution complete
+2025-01-04T18:43:40.974-06:00  INFO 785 --- [fileStorage] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-04T18:43:40.998-06:00  INFO 785 --- [fileStorage] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.2.Final
+2025-01-04T18:43:41.012-06:00  INFO 785 --- [fileStorage] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-01-04T18:43:41.139-06:00  INFO 785 --- [fileStorage] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-04T18:43:41.155-06:00  INFO 785 --- [fileStorage] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-04T18:43:41.179-06:00  INFO 785 --- [fileStorage] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2eafb4e7
+2025-01-04T18:43:41.180-06:00  INFO 785 --- [fileStorage] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-01-04T18:43:41.188-06:00  WARN 785 --- [fileStorage] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-01-04T18:43:41.189-06:00  WARN 785 --- [fileStorage] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-01-04T18:43:41.194-06:00  INFO 785 --- [fileStorage] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-01-04T18:43:41.495-06:00  INFO 785 --- [fileStorage] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-04T18:43:41.496-06:00  INFO 785 --- [fileStorage] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-04T18:43:41.703-06:00  WARN 785 --- [fileStorage] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-01-04T18:43:41.713-06:00  INFO 785 --- [fileStorage] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-01-04T18:43:41.744-06:00  INFO 785 --- [fileStorage] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2025-01-04T18:43:42.052-06:00  WARN 785 --- [fileStorage] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2025-01-04T18:43:42.056-06:00  INFO 785 --- [fileStorage] [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-04T18:43:42.056-06:00  INFO 785 --- [fileStorage] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-01-04T18:43:42.063-06:00  INFO 785 --- [fileStorage] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-01-04T18:43:42.068-06:00  INFO 785 --- [fileStorage] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-01-04T18:43:42.076-06:00 ERROR 785 --- [fileStorage] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2025-01-04T18:44:44.368-06:00  INFO 877 --- [fileStorage] [main] c.a.bobatea.FileStorageApplication       : Starting FileStorageApplication using Java 21.0.3 with PID 877 (/Users/karimpatvari/Desktop/bobatea/build/classes/java/main started by karimpatvari in /Users/karimpatvari/Desktop/bobatea)
+2025-01-04T18:44:44.369-06:00  INFO 877 --- [fileStorage] [main] c.a.bobatea.FileStorageApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-01-04T18:44:44.400-06:00  INFO 877 --- [fileStorage] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file /Users/karimpatvari/Desktop/bobatea/docker-compose.yml
+2025-01-04T18:44:45.225-06:00  INFO 877 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   : time="2025-01-04T18:44:45-06:00" level=warning msg="/Users/karimpatvari/Desktop/bobatea/docker-compose.yml: `version` is obsolete"
+2025-01-04T18:44:45.242-06:00  INFO 877 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Network bobatea_app-network  Creating
+2025-01-04T18:44:45.266-06:00  INFO 877 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Network bobatea_app-network  Created
+2025-01-04T18:44:45.268-06:00  INFO 877 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Network bobatea_default  Creating
+2025-01-04T18:44:45.285-06:00  INFO 877 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Network bobatea_default  Created
+2025-01-04T18:44:45.288-06:00  INFO 877 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container bobatea-minio-1  Creating
+2025-01-04T18:44:45.288-06:00  INFO 877 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container mysql-container  Creating
+2025-01-04T18:44:45.288-06:00  INFO 877 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container redis-container  Creating
+2025-01-04T18:44:45.329-06:00  INFO 877 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container redis-container  Created
+2025-01-04T18:44:45.329-06:00  INFO 877 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container bobatea-minio-1  Created
+2025-01-04T18:44:45.329-06:00  INFO 877 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container mysql-container  Created
+2025-01-04T18:44:45.339-06:00  INFO 877 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container bobatea-minio-1  Starting
+2025-01-04T18:44:45.339-06:00  INFO 877 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container redis-container  Starting
+2025-01-04T18:44:45.339-06:00  INFO 877 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container mysql-container  Starting
+2025-01-04T18:44:45.505-06:00  INFO 877 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container mysql-container  Started
+2025-01-04T18:44:45.514-06:00  INFO 877 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container redis-container  Started
+2025-01-04T18:44:45.524-06:00  INFO 877 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container bobatea-minio-1  Started
+2025-01-04T18:44:45.524-06:00  INFO 877 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container mysql-container  Waiting
+2025-01-04T18:44:45.524-06:00  INFO 877 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container bobatea-minio-1  Waiting
+2025-01-04T18:44:45.524-06:00  INFO 877 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container redis-container  Waiting
+2025-01-04T18:44:46.036-06:00  INFO 877 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container mysql-container  Healthy
+2025-01-04T18:44:46.037-06:00  INFO 877 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container redis-container  Healthy
+2025-01-04T18:44:46.037-06:00  INFO 877 --- [fileStorage] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container bobatea-minio-1  Healthy
+2025-01-04T18:44:48.351-06:00  INFO 877 --- [fileStorage] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-01-04T18:44:48.352-06:00  INFO 877 --- [fileStorage] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-04T18:44:48.407-06:00  INFO 877 --- [fileStorage] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 51 ms. Found 1 JPA repository interface.
+2025-01-04T18:44:48.415-06:00  INFO 877 --- [fileStorage] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-01-04T18:44:48.415-06:00  INFO 877 --- [fileStorage] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-04T18:44:48.421-06:00  INFO 877 --- [fileStorage] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.applications.bobatea.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-01-04T18:44:48.421-06:00  INFO 877 --- [fileStorage] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1 ms. Found 0 Redis repository interfaces.
+2025-01-04T18:44:48.631-06:00  INFO 877 --- [fileStorage] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-01-04T18:44:48.637-06:00  INFO 877 --- [fileStorage] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-04T18:44:48.637-06:00  INFO 877 --- [fileStorage] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-01-04T18:44:48.662-06:00  INFO 877 --- [fileStorage] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-04T18:44:48.662-06:00  INFO 877 --- [fileStorage] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 599 ms
+2025-01-04T18:44:49.007-06:00  INFO 877 --- [fileStorage] [main] liquibase.lockservice                    : Successfully acquired change log lock
+2025-01-04T18:44:49.123-06:00  INFO 877 --- [fileStorage] [main] liquibase.changelog                      : Reading from mydatabase.DATABASECHANGELOG
+2025-01-04T18:44:49.136-06:00  INFO 877 --- [fileStorage] [main] liquibase.changelog                      : Reading from mydatabase.DATABASECHANGELOG
+2025-01-04T18:44:49.138-06:00  INFO 877 --- [fileStorage] [main] liquibase.util                           : UPDATE SUMMARY
+2025-01-04T18:44:49.138-06:00  INFO 877 --- [fileStorage] [main] liquibase.util                           : Run:                          0
+2025-01-04T18:44:49.138-06:00  INFO 877 --- [fileStorage] [main] liquibase.util                           : Previously run:               2
+2025-01-04T18:44:49.138-06:00  INFO 877 --- [fileStorage] [main] liquibase.util                           : Filtered out:                 0
+2025-01-04T18:44:49.138-06:00  INFO 877 --- [fileStorage] [main] liquibase.util                           : -------------------------------
+2025-01-04T18:44:49.138-06:00  INFO 877 --- [fileStorage] [main] liquibase.util                           : Total change sets:            2
+
+2025-01-04T18:44:49.139-06:00  INFO 877 --- [fileStorage] [main] liquibase.util                           : Update summary generated
+2025-01-04T18:44:49.145-06:00  INFO 877 --- [fileStorage] [main] liquibase.lockservice                    : Successfully released change log lock
+2025-01-04T18:44:49.149-06:00  INFO 877 --- [fileStorage] [main] liquibase.lockservice                    : Successfully released change log lock
+2025-01-04T18:44:49.150-06:00  INFO 877 --- [fileStorage] [main] liquibase.command                        : Command execution complete
+2025-01-04T18:44:49.182-06:00  INFO 877 --- [fileStorage] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-04T18:44:49.208-06:00  INFO 877 --- [fileStorage] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.2.Final
+2025-01-04T18:44:49.221-06:00  INFO 877 --- [fileStorage] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-01-04T18:44:49.374-06:00  INFO 877 --- [fileStorage] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-04T18:44:49.385-06:00  INFO 877 --- [fileStorage] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-04T18:44:49.408-06:00  INFO 877 --- [fileStorage] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@15405ba1
+2025-01-04T18:44:49.409-06:00  INFO 877 --- [fileStorage] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-01-04T18:44:49.418-06:00  WARN 877 --- [fileStorage] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-01-04T18:44:49.418-06:00  WARN 877 --- [fileStorage] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-01-04T18:44:49.424-06:00  INFO 877 --- [fileStorage] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-01-04T18:44:49.732-06:00  INFO 877 --- [fileStorage] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-04T18:44:49.733-06:00  INFO 877 --- [fileStorage] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-04T18:44:49.931-06:00  WARN 877 --- [fileStorage] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-01-04T18:44:49.939-06:00  INFO 877 --- [fileStorage] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-01-04T18:44:49.974-06:00  INFO 877 --- [fileStorage] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2025-01-04T18:44:50.264-06:00  WARN 877 --- [fileStorage] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2025-01-04T18:44:50.267-06:00  INFO 877 --- [fileStorage] [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-04T18:44:50.268-06:00  INFO 877 --- [fileStorage] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-01-04T18:44:50.273-06:00  INFO 877 --- [fileStorage] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-01-04T18:44:50.278-06:00  INFO 877 --- [fileStorage] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-01-04T18:44:50.284-06:00 ERROR 877 --- [fileStorage] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2025-01-04T18:46:02.290-06:00  INFO 966 --- [fileStorage] [main] c.a.bobatea.FileStorageApplication       : Starting FileStorageApplication using Java 21.0.3 with PID 966 (/Users/karimpatvari/Desktop/bobatea/build/classes/java/main started by karimpatvari in /Users/karimpatvari/Desktop/bobatea)
+2025-01-04T18:46:02.295-06:00  INFO 966 --- [fileStorage] [main] c.a.bobatea.FileStorageApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-01-04T18:46:02.337-06:00  INFO 966 --- [fileStorage] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file /Users/karimpatvari/Desktop/bobatea/docker-compose.yml
+2025-01-04T18:46:02.951-06:00  INFO 966 --- [fileStorage] [main] .s.b.d.c.l.DockerComposeLifecycleManager : There are already Docker Compose services running, skipping startup
+2025-01-04T18:46:04.127-06:00  INFO 966 --- [fileStorage] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-01-04T18:46:04.128-06:00  INFO 966 --- [fileStorage] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-04T18:46:04.185-06:00  INFO 966 --- [fileStorage] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 53 ms. Found 1 JPA repository interface.
+2025-01-04T18:46:04.192-06:00  INFO 966 --- [fileStorage] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-01-04T18:46:04.192-06:00  INFO 966 --- [fileStorage] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-04T18:46:04.202-06:00  INFO 966 --- [fileStorage] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.applications.bobatea.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-01-04T18:46:04.203-06:00  INFO 966 --- [fileStorage] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 6 ms. Found 0 Redis repository interfaces.
+2025-01-04T18:46:04.434-06:00  INFO 966 --- [fileStorage] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-01-04T18:46:04.448-06:00  INFO 966 --- [fileStorage] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-04T18:46:04.449-06:00  INFO 966 --- [fileStorage] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-01-04T18:46:04.470-06:00  INFO 966 --- [fileStorage] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-04T18:46:04.470-06:00  INFO 966 --- [fileStorage] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 874 ms
+2025-01-04T18:46:04.789-06:00  INFO 966 --- [fileStorage] [main] liquibase.lockservice                    : Successfully acquired change log lock
+2025-01-04T18:46:04.898-06:00  INFO 966 --- [fileStorage] [main] liquibase.changelog                      : Reading from mydatabase.DATABASECHANGELOG
+2025-01-04T18:46:04.922-06:00  INFO 966 --- [fileStorage] [main] liquibase.changelog                      : Reading from mydatabase.DATABASECHANGELOG
+2025-01-04T18:46:04.924-06:00  INFO 966 --- [fileStorage] [main] liquibase.util                           : UPDATE SUMMARY
+2025-01-04T18:46:04.924-06:00  INFO 966 --- [fileStorage] [main] liquibase.util                           : Run:                          0
+2025-01-04T18:46:04.924-06:00  INFO 966 --- [fileStorage] [main] liquibase.util                           : Previously run:               2
+2025-01-04T18:46:04.924-06:00  INFO 966 --- [fileStorage] [main] liquibase.util                           : Filtered out:                 0
+2025-01-04T18:46:04.924-06:00  INFO 966 --- [fileStorage] [main] liquibase.util                           : -------------------------------
+2025-01-04T18:46:04.924-06:00  INFO 966 --- [fileStorage] [main] liquibase.util                           : Total change sets:            2
+
+2025-01-04T18:46:04.925-06:00  INFO 966 --- [fileStorage] [main] liquibase.util                           : Update summary generated
+2025-01-04T18:46:04.929-06:00  INFO 966 --- [fileStorage] [main] liquibase.lockservice                    : Successfully released change log lock
+2025-01-04T18:46:04.934-06:00  INFO 966 --- [fileStorage] [main] liquibase.lockservice                    : Successfully released change log lock
+2025-01-04T18:46:04.935-06:00  INFO 966 --- [fileStorage] [main] liquibase.command                        : Command execution complete
+2025-01-04T18:46:04.977-06:00  INFO 966 --- [fileStorage] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-04T18:46:05.002-06:00  INFO 966 --- [fileStorage] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.2.Final
+2025-01-04T18:46:05.020-06:00  INFO 966 --- [fileStorage] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-01-04T18:46:05.134-06:00  INFO 966 --- [fileStorage] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-04T18:46:05.145-06:00  INFO 966 --- [fileStorage] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-04T18:46:05.169-06:00  INFO 966 --- [fileStorage] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@a74c940
+2025-01-04T18:46:05.170-06:00  INFO 966 --- [fileStorage] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-01-04T18:46:05.178-06:00  WARN 966 --- [fileStorage] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-01-04T18:46:05.179-06:00  WARN 966 --- [fileStorage] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-01-04T18:46:05.184-06:00  INFO 966 --- [fileStorage] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-01-04T18:46:05.482-06:00  INFO 966 --- [fileStorage] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-04T18:46:05.483-06:00  INFO 966 --- [fileStorage] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-04T18:46:05.715-06:00  WARN 966 --- [fileStorage] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-01-04T18:46:05.723-06:00  INFO 966 --- [fileStorage] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-01-04T18:46:05.751-06:00  INFO 966 --- [fileStorage] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2025-01-04T18:46:06.053-06:00  INFO 966 --- [fileStorage] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-01-04T18:46:06.058-06:00  INFO 966 --- [fileStorage] [main] c.a.bobatea.FileStorageApplication       : Started FileStorageApplication in 4.026 seconds (process running for 4.391)
+2025-01-04T18:46:24.619-06:00  INFO 966 --- [fileStorage] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-01-04T18:46:24.623-06:00  INFO 966 --- [fileStorage] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-01-04T18:46:24.644-06:00  INFO 966 --- [fileStorage] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-04T18:46:24.646-06:00  INFO 966 --- [fileStorage] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-01-04T18:46:24.662-06:00  INFO 966 --- [fileStorage] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-01-04T19:23:32.286-06:00  INFO 2055 --- [fileStorage] [main] c.a.bobatea.FileStorageApplication       : Starting FileStorageApplication using Java 21.0.3 with PID 2055 (/Users/karimpatvari/Desktop/bobatea/build/classes/java/main started by karimpatvari in /Users/karimpatvari/Desktop/bobatea)
+2025-01-04T19:23:32.288-06:00  INFO 2055 --- [fileStorage] [main] c.a.bobatea.FileStorageApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-01-04T19:23:32.321-06:00  INFO 2055 --- [fileStorage] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file /Users/karimpatvari/Desktop/bobatea/docker-compose.yml
+2025-01-04T19:23:33.428-06:00  INFO 2055 --- [fileStorage] [main] .s.b.d.c.l.DockerComposeLifecycleManager : There are already Docker Compose services running, skipping startup
+2025-01-04T19:23:37.964-06:00  INFO 2089 --- [fileStorage] [main] c.a.bobatea.FileStorageApplication       : Starting FileStorageApplication using Java 21.0.3 with PID 2089 (/Users/karimpatvari/Desktop/bobatea/build/classes/java/main started by karimpatvari in /Users/karimpatvari/Desktop/bobatea)
+2025-01-04T19:23:37.966-06:00  INFO 2089 --- [fileStorage] [main] c.a.bobatea.FileStorageApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-01-04T19:23:37.991-06:00  INFO 2089 --- [fileStorage] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file /Users/karimpatvari/Desktop/bobatea/docker-compose.yml
+2025-01-04T19:23:38.461-06:00  INFO 2089 --- [fileStorage] [main] .s.b.d.c.l.DockerComposeLifecycleManager : There are already Docker Compose services running, skipping startup
+2025-01-04T19:23:39.458-06:00  INFO 2089 --- [fileStorage] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-01-04T19:23:39.460-06:00  INFO 2089 --- [fileStorage] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-04T19:23:39.535-06:00  INFO 2089 --- [fileStorage] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 68 ms. Found 1 JPA repository interface.
+2025-01-04T19:23:39.542-06:00  INFO 2089 --- [fileStorage] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-01-04T19:23:39.542-06:00  INFO 2089 --- [fileStorage] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-04T19:23:39.552-06:00  INFO 2089 --- [fileStorage] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.applications.bobatea.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-01-04T19:23:39.552-06:00  INFO 2089 --- [fileStorage] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 5 ms. Found 0 Redis repository interfaces.
+2025-01-04T19:23:39.772-06:00  INFO 2089 --- [fileStorage] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-01-04T19:23:39.779-06:00  INFO 2089 --- [fileStorage] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-04T19:23:39.780-06:00  INFO 2089 --- [fileStorage] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-01-04T19:23:39.806-06:00  INFO 2089 --- [fileStorage] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-04T19:23:39.806-06:00  INFO 2089 --- [fileStorage] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 712 ms
+2025-01-04T19:23:40.269-06:00  INFO 2089 --- [fileStorage] [main] liquibase.lockservice                    : Successfully acquired change log lock
+2025-01-04T19:23:40.408-06:00  INFO 2089 --- [fileStorage] [main] liquibase.changelog                      : Reading from mydatabase.DATABASECHANGELOG
+2025-01-04T19:23:40.421-06:00  INFO 2089 --- [fileStorage] [main] liquibase.changelog                      : Reading from mydatabase.DATABASECHANGELOG
+2025-01-04T19:23:40.422-06:00  INFO 2089 --- [fileStorage] [main] liquibase.util                           : UPDATE SUMMARY
+2025-01-04T19:23:40.422-06:00  INFO 2089 --- [fileStorage] [main] liquibase.util                           : Run:                          0
+2025-01-04T19:23:40.422-06:00  INFO 2089 --- [fileStorage] [main] liquibase.util                           : Previously run:               2
+2025-01-04T19:23:40.422-06:00  INFO 2089 --- [fileStorage] [main] liquibase.util                           : Filtered out:                 0
+2025-01-04T19:23:40.423-06:00  INFO 2089 --- [fileStorage] [main] liquibase.util                           : -------------------------------
+2025-01-04T19:23:40.423-06:00  INFO 2089 --- [fileStorage] [main] liquibase.util                           : Total change sets:            2
+
+2025-01-04T19:23:40.423-06:00  INFO 2089 --- [fileStorage] [main] liquibase.util                           : Update summary generated
+2025-01-04T19:23:40.425-06:00  INFO 2089 --- [fileStorage] [main] liquibase.lockservice                    : Successfully released change log lock
+2025-01-04T19:23:40.428-06:00  INFO 2089 --- [fileStorage] [main] liquibase.lockservice                    : Successfully released change log lock
+2025-01-04T19:23:40.428-06:00  INFO 2089 --- [fileStorage] [main] liquibase.command                        : Command execution complete
+2025-01-04T19:23:40.466-06:00  INFO 2089 --- [fileStorage] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-04T19:23:40.503-06:00  INFO 2089 --- [fileStorage] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.2.Final
+2025-01-04T19:23:40.519-06:00  INFO 2089 --- [fileStorage] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-01-04T19:23:40.650-06:00  INFO 2089 --- [fileStorage] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-04T19:23:40.661-06:00  INFO 2089 --- [fileStorage] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-04T19:23:40.680-06:00  INFO 2089 --- [fileStorage] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2dbf8cfc
+2025-01-04T19:23:40.681-06:00  INFO 2089 --- [fileStorage] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-01-04T19:23:40.689-06:00  WARN 2089 --- [fileStorage] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-01-04T19:23:40.689-06:00  WARN 2089 --- [fileStorage] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-01-04T19:23:40.695-06:00  INFO 2089 --- [fileStorage] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-01-04T19:23:40.999-06:00  INFO 2089 --- [fileStorage] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-04T19:23:41.000-06:00  INFO 2089 --- [fileStorage] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-04T19:23:41.195-06:00  WARN 2089 --- [fileStorage] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-01-04T19:23:41.204-06:00  INFO 2089 --- [fileStorage] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-01-04T19:23:41.235-06:00  INFO 2089 --- [fileStorage] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2025-01-04T19:23:41.537-06:00  INFO 2089 --- [fileStorage] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-01-04T19:23:41.541-06:00  INFO 2089 --- [fileStorage] [main] c.a.bobatea.FileStorageApplication       : Started FileStorageApplication in 3.746 seconds (process running for 4.134)
+2025-01-04T19:33:19.678-06:00  INFO 2089 --- [fileStorage] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-01-04T19:33:19.695-06:00  INFO 2089 --- [fileStorage] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-01-04T19:33:19.753-06:00  INFO 2089 --- [fileStorage] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-04T19:33:19.758-06:00  INFO 2089 --- [fileStorage] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-01-04T19:33:19.774-06:00  INFO 2089 --- [fileStorage] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-01-04T20:15:43.999-06:00  INFO 3669 --- [fileStorage] [main] c.a.bobatea.FileStorageApplication       : Starting FileStorageApplication using Java 21.0.3 with PID 3669 (/Users/karimpatvari/Desktop/bobatea/build/classes/java/main started by karimpatvari in /Users/karimpatvari/Desktop/bobatea)
+2025-01-04T20:15:44.002-06:00  INFO 3669 --- [fileStorage] [main] c.a.bobatea.FileStorageApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-01-04T20:15:44.037-06:00  INFO 3669 --- [fileStorage] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file /Users/karimpatvari/Desktop/bobatea/docker-compose.yml
+2025-01-04T20:15:45.214-06:00  INFO 3669 --- [fileStorage] [main] .s.b.d.c.l.DockerComposeLifecycleManager : There are already Docker Compose services running, skipping startup
+2025-01-04T20:15:46.173-06:00  INFO 3669 --- [fileStorage] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-01-04T20:15:46.173-06:00  INFO 3669 --- [fileStorage] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-04T20:15:46.230-06:00  INFO 3669 --- [fileStorage] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 53 ms. Found 1 JPA repository interface.
+2025-01-04T20:15:46.237-06:00  INFO 3669 --- [fileStorage] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-01-04T20:15:46.238-06:00  INFO 3669 --- [fileStorage] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-04T20:15:46.247-06:00  INFO 3669 --- [fileStorage] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.applications.bobatea.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-01-04T20:15:46.247-06:00  INFO 3669 --- [fileStorage] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 5 ms. Found 0 Redis repository interfaces.
+2025-01-04T20:15:46.452-06:00  INFO 3669 --- [fileStorage] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-01-04T20:15:46.459-06:00  INFO 3669 --- [fileStorage] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-04T20:15:46.459-06:00  INFO 3669 --- [fileStorage] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-01-04T20:15:46.484-06:00  INFO 3669 --- [fileStorage] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-04T20:15:46.484-06:00  INFO 3669 --- [fileStorage] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 607 ms
+2025-01-04T20:15:46.893-06:00  INFO 3669 --- [fileStorage] [main] liquibase.lockservice                    : Successfully acquired change log lock
+2025-01-04T20:15:47.004-06:00  INFO 3669 --- [fileStorage] [main] liquibase.changelog                      : Reading from mydatabase.DATABASECHANGELOG
+2025-01-04T20:15:47.020-06:00  INFO 3669 --- [fileStorage] [main] liquibase.changelog                      : Reading from mydatabase.DATABASECHANGELOG
+2025-01-04T20:15:47.022-06:00  INFO 3669 --- [fileStorage] [main] liquibase.util                           : UPDATE SUMMARY
+2025-01-04T20:15:47.022-06:00  INFO 3669 --- [fileStorage] [main] liquibase.util                           : Run:                          0
+2025-01-04T20:15:47.022-06:00  INFO 3669 --- [fileStorage] [main] liquibase.util                           : Previously run:               2
+2025-01-04T20:15:47.022-06:00  INFO 3669 --- [fileStorage] [main] liquibase.util                           : Filtered out:                 0
+2025-01-04T20:15:47.022-06:00  INFO 3669 --- [fileStorage] [main] liquibase.util                           : -------------------------------
+2025-01-04T20:15:47.022-06:00  INFO 3669 --- [fileStorage] [main] liquibase.util                           : Total change sets:            2
+
+2025-01-04T20:15:47.022-06:00  INFO 3669 --- [fileStorage] [main] liquibase.util                           : Update summary generated
+2025-01-04T20:15:47.026-06:00  INFO 3669 --- [fileStorage] [main] liquibase.lockservice                    : Successfully released change log lock
+2025-01-04T20:15:47.030-06:00  INFO 3669 --- [fileStorage] [main] liquibase.lockservice                    : Successfully released change log lock
+2025-01-04T20:15:47.030-06:00  INFO 3669 --- [fileStorage] [main] liquibase.command                        : Command execution complete
+2025-01-04T20:15:47.060-06:00  INFO 3669 --- [fileStorage] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-04T20:15:47.083-06:00  INFO 3669 --- [fileStorage] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.2.Final
+2025-01-04T20:15:47.096-06:00  INFO 3669 --- [fileStorage] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-01-04T20:15:47.213-06:00  INFO 3669 --- [fileStorage] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-04T20:15:47.224-06:00  INFO 3669 --- [fileStorage] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-04T20:15:47.247-06:00  INFO 3669 --- [fileStorage] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7b38db21
+2025-01-04T20:15:47.248-06:00  INFO 3669 --- [fileStorage] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-01-04T20:15:47.256-06:00  WARN 3669 --- [fileStorage] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-01-04T20:15:47.256-06:00  WARN 3669 --- [fileStorage] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-01-04T20:15:47.261-06:00  INFO 3669 --- [fileStorage] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-01-04T20:15:47.565-06:00  INFO 3669 --- [fileStorage] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-04T20:15:47.566-06:00  INFO 3669 --- [fileStorage] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-04T20:15:47.757-06:00  WARN 3669 --- [fileStorage] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-01-04T20:15:47.765-06:00  INFO 3669 --- [fileStorage] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-01-04T20:15:47.795-06:00  INFO 3669 --- [fileStorage] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2025-01-04T20:15:48.094-06:00  INFO 3669 --- [fileStorage] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-01-04T20:15:48.099-06:00  INFO 3669 --- [fileStorage] [main] c.a.bobatea.FileStorageApplication       : Started FileStorageApplication in 4.371 seconds (process running for 4.977)
+2025-01-04T20:19:49.548-06:00  INFO 3669 --- [fileStorage] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-01-04T20:19:49.556-06:00  INFO 3669 --- [fileStorage] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-01-04T20:19:49.596-06:00  INFO 3669 --- [fileStorage] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-04T20:19:49.600-06:00  INFO 3669 --- [fileStorage] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-01-04T20:19:49.607-06:00  INFO 3669 --- [fileStorage] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

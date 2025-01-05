@@ -5,6 +5,8 @@ import com.applications.bobatea.customExceptions.UserExistsException;
 import com.applications.bobatea.models.User;
 import com.applications.bobatea.services.MinIoService;
 import com.applications.bobatea.services.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,7 @@ import java.security.Principal;
 @Controller
 public class RegistrationController {
 
+    private static final Logger logger = LoggerFactory.getLogger(RegistrationController.class);
     private UserService userService;
     private MinIoService minIoService;
 
@@ -33,12 +36,11 @@ public class RegistrationController {
     }
 
     @PostMapping("register")
-    public String processRegistrationForm(@ModelAttribute("user") User user, Model model, Principal principal) {
+    public String processRegistrationForm(@ModelAttribute("user") User user, Model model) {
 
         try {
             User newUser = userService.register(user);
 
-            System.out.println(newUser.getFolder());
             minIoService.createFolder(newUser);
 
         } catch (UserExistsException e) {
@@ -47,6 +49,11 @@ public class RegistrationController {
             return "registration-page";
 
         } catch (MinioClientException e) {
+            logger.error("Error with minio when registrating user and creating folder: {}", e.getMessage(), e);
+            model.addAttribute("message", e.getMessage());
+            return "error-page";
+        } catch (Exception e) {
+            logger.error("Unexpected error when registrating user: {}", e.getMessage(), e);
             model.addAttribute("message", e.getMessage());
             return "error-page";
         }

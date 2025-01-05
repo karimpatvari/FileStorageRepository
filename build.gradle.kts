@@ -14,6 +14,16 @@ java {
 	}
 }
 
+springBoot {
+	mainClass.set("com.applications.bobatea.FileStorageApplication")
+}
+
+tasks.jar {
+	manifest {
+		attributes["Main-Class"] = "com/applications/bobatea/FileStorageApplication" // Replace with your actual main class
+	}
+}
+
 configurations {
 	compileOnly {
 		extendsFrom(configurations.annotationProcessor.get())
@@ -26,11 +36,14 @@ repositories {
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("org.springframework.boot:spring-boot-docker-compose")
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 	implementation("org.springframework.boot:spring-boot-starter-web")
-//	implementation ("org.springframework.session:spring-session-jdbc")
+	implementation("org.springframework.session:spring-session-data-redis")
+	implementation ("org.springframework.boot:spring-boot-starter-data-redis")
 	testImplementation("org.testcontainers:mysql:1.20.0")
+	implementation("org.liquibase:liquibase-core:4.23.0")
 	implementation("io.minio:minio:8.5.13")
 	implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6")
 	compileOnly("org.projectlombok:lombok")

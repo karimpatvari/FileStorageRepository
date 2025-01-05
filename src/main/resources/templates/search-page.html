@@ -2,46 +2,74 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Results</title>
+    <title>Search | FileStorage</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles.css"> <!-- External CSS for styling -->
 </head>
-<body>
+<body style="background-color: #fcfcfc;">
 
-<p>You are at search page:) Hello</p>
+<!-- navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <span class="navbar-brand mb-0 h1">FileStorage</span>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/search">Search</a>
+                </li>
+            </ul>
 
-<form action="/search" method="get">
-    <input type="text" name="keyword" placeholder="File name">
-    <button type="submit">SEARCH</button>
-</form>
+            <form class="d-flex me-3" action="/search" method="get">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
 
-<div th:if="${!files.isEmpty()}">
-    <table>
-        <thead>
-        <tr>
-            <th>File name</th>
-            <th>File Path</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="file : ${files}">
-            <!-- File name -->
-            <td th:text="${file.getFileName()}"></td>
-            <!-- If it's a file -->
-            <div th:if="${!file.isFolder()}">
+            <div class="d-flex align-items-center">
+                <p th:text="'Hello, ' + ${searchPageDto.getUserDto().getUsername()}"
+                   class="mb-0 me-3 text-light bg-dark"></p>
+                <a class="btn btn-outline-primary" href="/logout" role="button">Logout</a>
+            </div>
+        </div>
+    </div>
+</nav>
 
-                <td>
-                    <form action="/" method="get">
+<div class="container mt-4">
+
+    <div th:if="${searchPageDto.getFileDtoList() == null || searchPageDto.getFileDtoList().isEmpty()}">
+        <p th:if="${searchPageDto.getFileDtoList() == null}" class="fs-3 fw-bolder text-center ">Search for some files</p>
+        <p th:if="${searchPageDto.getFileDtoList() != null}" class="fs-3 fw-bolder text-center ow">Sorry, nothing found for "<span th:text="${searchPageDto.getKeyword()}"></span>"</p>
+    </div>
+
+    <div th:if="${searchPageDto.getFileDtoList() != null && !searchPageDto.getFileDtoList().isEmpty()}">
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>File name</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="file : ${searchPageDto.getFileDtoList()}">
+                <!-- File name -->
+                <td th:text="${file.getFileName()}"></td>
+                <!-- Actions -->
+                <td th:if="${!file.isFolder()}">
+                    <form action="/" method="get" style="display:inline;">
                         <input type="hidden" name="path" th:value="${file.getFilePath()}">
-                        <button type="submit">OPEN FOLDER</button>
+                        <button type="submit" class="btn btn-primary btn-sm">Go to folder</button>
                     </form>
                 </td>
-            </div>
-        </tr>
-        </tbody>
-    </table>
-</div>
-<div th:if="${files.isEmpty()}">
-    <p>Nothing there, empty</p>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

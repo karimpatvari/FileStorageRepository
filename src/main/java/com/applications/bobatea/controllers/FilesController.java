@@ -6,6 +6,8 @@ import com.applications.bobatea.models.User;
 import com.applications.bobatea.services.HomePageService;
 import com.applications.bobatea.services.MinIoService;
 import com.applications.bobatea.services.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
@@ -26,10 +28,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.security.Principal;
 import java.util.List;
 
-
 @Controller
 public class FilesController {
 
+    private static final Logger logger = LoggerFactory.getLogger(FilesController.class);
     private MinIoService minIoService;
     private UserService userService;
     private HomePageService homePageService;
@@ -45,12 +47,18 @@ public class FilesController {
     public String showHomePage(@RequestParam(value = "path", required = false) String path,
                                Principal principal, Model model) {
         try {
+            validatePrincipal(principal);
+
             HomePageDto homePageDto = homePageService.getHomePageData(principal, path);
             model.addAttribute("homePageDto", homePageDto);
             return "index";
 
+        } catch (IllegalArgumentException e) {
+            return "preview-page";
+
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Error while showing home page: {}", e.getMessage(), e);
+
             model.addAttribute("message", e.getMessage());
             return "error-page";
         }
@@ -60,18 +68,22 @@ public class FilesController {
     public String uploadFile(@ModelAttribute UploadFileDto uploadFileDto,
                              Principal principal, Model model, RedirectAttributes redirectAttributes) {
         try {
+            validatePrincipal(principal);
+
+            redirectAttributes.addAttribute("path", uploadFileDto.getPath());
+
             if ( uploadFileDto.getFile() == null || uploadFileDto.getFile().isEmpty()) {
-                model.addAttribute("message", "Uploaded file is empty. Please select a valid file.");
-                return "error-page";
+                redirectAttributes.addFlashAttribute("errorMessage", "Uploaded file is empty. Please select a valid file.");
+                return "redirect:/";
             }
 
             homePageService.uploadFile(principal, uploadFileDto);
-
-            redirectAttributes.addAttribute("path", uploadFileDto.getPath());
+            redirectAttributes.addFlashAttribute("successMessage", "File uploaded successfully.");
             return "redirect:/";
 
         }  catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Error while uploading file: {}", e.getMessage(), e);
+
             model.addAttribute("message", e.getMessage());
             return "error-page";
         }
@@ -88,11 +100,13 @@ public class FilesController {
             validatePrincipal(principal);
             homePageService.deleteFile(principal, deleteFileDto.getFilePath());
 
+            redirectAttributes.addFlashAttribute("successMessage", "File deleted successfully.");
             redirectAttributes.addAttribute("path", deleteFileDto.getPath());
             return "redirect:/";
 
         }  catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Error deleting file: {}", e.getMessage(), e);
+
             model.addAttribute("message", e.getMessage());
             return "error-page";
         }
@@ -117,7 +131,8 @@ public class FilesController {
                     .body(resource);
 
         } catch (Exception e) {
-            e.printStackTrace(); // Вывод стека ошибок в лог
+            logger.error("Error downloading file: {}", e.getMessage(), e);
+
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(null);
         }
@@ -128,13 +143,20 @@ public class FilesController {
                                Principal principal, Model model, RedirectAttributes redirectAttributes) {
         try {
             validatePrincipal(principal);
-            homePageService.createFolder(principal, createFolderDto);
 
             redirectAttributes.addAttribute("path", createFolderDto.getPath());
+            try {
+                homePageService.createFolder(principal, createFolderDto);
+            } catch (IllegalArgumentException e) {
+                redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+                return "redirect:/";
+            }
+
             return "redirect:/";
 
-        }  catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            logger.error("Error creating new folder: {}", e.getMessage(), e);
+
             model.addAttribute("message", e.getMessage());
             return "error-page";
         }
@@ -145,13 +167,21 @@ public class FilesController {
                                Principal principal, Model model, RedirectAttributes redirectAttributes) {
         try {
             validatePrincipal(principal);
+
+            if (deleteFolderDto.getFolderPath() == null || deleteFolderDto.getFolderPath().isEmpty()) {
+                redirectAttributes.addFlashAttribute("errorMessage", "Folder path is empty. Please select a valid folder.");
+                return "redirect:/";
+            }
+
             homePageService.deleteFolder(principal, deleteFolderDto);
 
             redirectAttributes.addAttribute("path", deleteFolderDto.getPath());
+            redirectAttributes.addFlashAttribute("successMessage", "Folder deleted successfully.");
             return "redirect:/";
 
         }  catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Error deleting folder: {}", e.getMessage(), e);
+
             model.addAttribute("message", e.getMessage());
             return "error-page";
         }
@@ -168,7 +198,8 @@ public class FilesController {
             return "redirect:/";
 
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Error uploading folder: {}", e.getMessage(), e);
+
             model.addAttribute("message", e.getMessage());
             return "error-page";
         }
@@ -177,6 +208,8 @@ public class FilesController {
     @GetMapping("/download-folder")
     public ResponseEntity<byte[]> downloadFolder(@RequestParam("folderPath") String folderPath, Principal principal) {
         try {
+            validatePrincipal(principal);
+
             User user = userService.getAuthenticatedUser(principal);
             ZipDto zipDto = minIoService.downloadFolder(user, folderPath);
 
@@ -189,7 +222,8 @@ public class FilesController {
                     .body(zipDto.getByteArrayOutputStream().toByteArray());
 
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Error downloading folder: {}", e.getMessage(), e);
+
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
@@ -197,26 +231,29 @@ public class FilesController {
     @PostMapping("/rename")
     public String renameFile(@ModelAttribute RenameFileDto renameFileDto,
                              Principal principal, Model model, RedirectAttributes redirectAttributes) {
-
         try {
             validatePrincipal(principal);
             User user = userService.getAuthenticatedUser(principal);
 
-            if (renameFileDto.getNewFileName() == null || renameFileDto.getNewFileName().isEmpty()) {
-                throw new IllegalArgumentException("File name is empty");
+            redirectAttributes.addAttribute("path", renameFileDto.getPath());
+
+            if (renameFileDto.getNewFileName() == null || renameFileDto.getNewFileName().isBlank() || !renameFileDto.getNewFileName().matches("^[a-zA-Z]+$")) {
+                redirectAttributes.addFlashAttribute("errorMessage","File name can't be empty, or contain invalid characters");
+                return "redirect:/";
             }
 
             String newFilePath = renameFileDto.getPath() + renameFileDto.getNewFileName();
             minIoService.renameFile(user, renameFileDto.getFilePath(), newFilePath);
 
-            redirectAttributes.addAttribute("path", renameFileDto.getPath());
+            redirectAttributes.addFlashAttribute("successMessage", "File renamed successfully.");
             return "redirect:/";
 
         }  catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Error renaming file: {}", e.getMessage(), e);
             model.addAttribute("message", e.getMessage());
             return "error-page";
         }
+
     }
 
     @PostMapping("/rename-folder")
@@ -225,21 +262,31 @@ public class FilesController {
         try {
             validatePrincipal(principal);
             User user = userService.getAuthenticatedUser(principal);
-            minIoService.renameFolder(user, renameFolderDto);
 
             redirectAttributes.addAttribute("path", renameFolderDto.getPath());
+
+            if (renameFolderDto.getNewFolderName() == null || renameFolderDto.getNewFolderName().isBlank() || !renameFolderDto.getNewFolderName().matches("^[a-zA-Z]+$")) {
+                redirectAttributes.addFlashAttribute("errorMessage", "Folder name can't be empty, or contain invalid characters");
+                return "redirect:/";
+            }
+
+            minIoService.renameFolder(user, renameFolderDto);
+
+            redirectAttributes.addFlashAttribute("successMessage", "Folder renamed successfully.");
             return "redirect:/";
 
         }  catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Error renaming folder: {}", e.getMessage(), e);
+
             model.addAttribute("message", e.getMessage());
             return "error-page";
         }
     }
 
     private void validatePrincipal(Principal principal) {
-        if (principal == null) {
-            throw new IllegalArgumentException("User not found");
+        if (principal == null || principal.getName() == null || principal.getName().isEmpty()) {
+            logger.error("Invalid principal: User is not authenticated.");
+            throw new IllegalArgumentException("Invalid principal: User is not authenticated.");
         }
     }
 }

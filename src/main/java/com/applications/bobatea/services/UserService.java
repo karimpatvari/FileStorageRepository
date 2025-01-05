@@ -15,5 +15,4 @@ public interface UserService {
 
     User getAuthenticatedUser(Principal principal) throws UsernameNotFoundException;
 
-
 }
